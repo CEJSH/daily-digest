@@ -5,3 +5,4 @@ export { NewsCard } from './NewsCard';
 export { TodayQuestion } from './TodayQuestion';
 export { EmptyState } from './EmptyState';
 export { Footer } from './Footer';
+export { ThemeSwitcher } from './ThemeSwitcher';

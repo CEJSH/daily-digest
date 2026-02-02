@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 interface HeaderProps {
   lastUpdatedAt: string;
@@ -15,12 +16,15 @@ export function Header({ lastUpdatedAt }: HeaderProps) {
 
   return (
     <header className="text-center py-10 md:py-16 border-b-2 border-foreground">
-      {/* 서비스 타이틀 - 더 크고 무게감 있게 */}
+      {/* 테마 스위처 */}
+      <ThemeSwitcher />
+      
+      {/* 서비스 타이틀 */}
       <h1 className="font-serif text-[1.75rem] md:text-[2.25rem] lg:text-[2.75rem] font-bold tracking-tighter mb-4 leading-tight">
         오늘, 이 정도만 알면 충분합니다
       </h1>
       
-      {/* 날짜 - 명확한 위계 */}
+      {/* 날짜 */}
       <p className="text-base md:text-lg text-foreground/70 font-medium mb-2 tracking-tight">
         {formattedDate}
       </p>
