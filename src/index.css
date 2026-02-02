@@ -12,50 +12,50 @@
 
 @layer base {
   :root {
-    /* 배경/전경 - 눈 편한 오프화이트 */
-    --background: 45 15% 97%;
-    --foreground: 0 0% 12%;
+    /* 배경/전경 - 차분한 민트/블루 그린 계열 */
+    --background: 170 25% 96%;
+    --foreground: 200 20% 15%;
 
-    /* 카드 */
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 12%;
+    /* 카드 - 살짝 더 밝은 민트 */
+    --card: 170 20% 99%;
+    --card-foreground: 200 20% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 12%;
+    --popover: 170 20% 99%;
+    --popover-foreground: 200 20% 15%;
 
-    /* Primary - 깊은 검정 */
-    --primary: 0 0% 8%;
-    --primary-foreground: 0 0% 98%;
+    /* Primary - 깊은 틸 */
+    --primary: 190 40% 20%;
+    --primary-foreground: 170 20% 98%;
 
-    /* Secondary */
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 20%;
+    /* Secondary - 연한 민트 */
+    --secondary: 170 20% 93%;
+    --secondary-foreground: 200 20% 25%;
 
     /* Muted - 보조 텍스트 */
-    --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 170 15% 92%;
+    --muted-foreground: 200 10% 45%;
 
-    /* Accent */
-    --accent: 0 0% 94%;
-    --accent-foreground: 0 0% 8%;
+    /* Accent - 포인트 민트 */
+    --accent: 165 25% 90%;
+    --accent-foreground: 190 40% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    /* 테두리 */
-    --border: 0 0% 88%;
-    --input: 0 0% 88%;
-    --ring: 0 0% 8%;
+    /* 테두리 - 부드러운 민트 */
+    --border: 170 15% 88%;
+    --input: 170 15% 88%;
+    --ring: 190 40% 20%;
 
     --radius: 0.25rem;
 
     /* 카테고리 컬러 */
-    --category-it: 215 60% 40%;
-    --category-economy: 30 70% 45%;
-    --category-global: 160 45% 35%;
+    --category-it: 210 55% 45%;
+    --category-economy: 35 65% 50%;
+    --category-global: 160 50% 38%;
 
-    /* 하이라이트 */
-    --highlight: 45 20% 94%;
+    /* 하이라이트 - 연한 민트 강조 */
+    --highlight: 165 30% 92%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
