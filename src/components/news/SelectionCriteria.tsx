@@ -24,10 +24,10 @@ export function SelectionCriteria() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="py-6 border-b border-border">
+    <section className="py-5 border-b border-border">
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-        <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
-          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+        <CollapsibleTrigger className="flex items-center justify-between w-full text-left group py-1">
+          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors tracking-tight">
             뉴스 선정 기준
           </span>
           {isOpen ? (
@@ -37,14 +37,14 @@ export function SelectionCriteria() {
           )}
         </CollapsibleTrigger>
         
-        <CollapsibleContent className="pt-4">
-          <div className="space-y-3">
+        <CollapsibleContent className="pt-5">
+          <div className="space-y-4">
             {SELECTION_CRITERIA.map((criteria, index) => (
               <div key={index} className="flex gap-3">
-                <span className="text-base flex-shrink-0">{criteria.icon}</span>
+                <span className="text-lg flex-shrink-0">{criteria.icon}</span>
                 <div>
-                  <p className="text-sm font-medium text-foreground">{criteria.title}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{criteria.description}</p>
+                  <p className="text-sm font-semibold text-foreground tracking-tight">{criteria.title}</p>
+                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{criteria.description}</p>
                 </div>
               </div>
             ))}

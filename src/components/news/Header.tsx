@@ -14,19 +14,19 @@ export function Header({ lastUpdatedAt }: HeaderProps) {
     .replace('오전/오후', updatedDate.getHours() < 12 ? '오전' : '오후');
 
   return (
-    <header className="text-center py-8 md:py-12 border-b-2 border-foreground">
-      {/* 서비스 타이틀 */}
-      <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-3">
+    <header className="text-center py-10 md:py-16 border-b-2 border-foreground">
+      {/* 서비스 타이틀 - 더 크고 무게감 있게 */}
+      <h1 className="font-serif text-[1.75rem] md:text-[2.25rem] lg:text-[2.75rem] font-bold tracking-tighter mb-4 leading-tight">
         오늘, 이 정도만 알면 충분합니다
       </h1>
       
-      {/* 날짜 */}
-      <p className="text-lg md:text-xl text-muted-foreground font-medium mb-2">
+      {/* 날짜 - 명확한 위계 */}
+      <p className="text-base md:text-lg text-foreground/70 font-medium mb-2 tracking-tight">
         {formattedDate}
       </p>
       
       {/* 업데이트 시각 */}
-      <p className="text-sm text-muted-foreground">
+      <p className="text-sm text-muted-foreground tracking-normal">
         업데이트: {format(updatedDate, 'yyyy.MM.dd', { locale: ko })} {formattedUpdateTime}
       </p>
     </header>
