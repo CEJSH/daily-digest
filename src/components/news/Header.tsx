@@ -21,7 +21,7 @@ export function Header({ lastUpdatedAt }: HeaderProps) {
       
       {/* 서비스 타이틀 */}
       <h1 className="font-serif text-[1.75rem] md:text-[2.25rem] lg:text-[2.75rem] font-bold tracking-tighter mb-4 leading-tight">
-        오늘, 이 정도만 알면 충분합니다
+        오늘, 당신을 위한 최소한의 뉴스
       </h1>
       
       {/* 날짜 */}
