@@ -13,63 +13,64 @@ export function NewsCard({ news, index }: NewsCardProps) {
   const readingTime = calculateReadingTime(news.summary);
 
   return (
-    <article className="py-6 border-b border-border last:border-b-0">
+    <article className="py-8 md:py-10 border-b border-border last:border-b-0">
       {/* 상단: 카테고리 + 읽는 시간 */}
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-4">
         <span 
-          className={`${getCategoryColorClass(news.category)} text-white text-xs font-medium px-2 py-0.5 rounded`}
+          className={`${getCategoryColorClass(news.category)} text-white text-xs font-semibold px-2.5 py-1 rounded`}
         >
           {news.category}
         </span>
-        <span className="flex items-center gap-1 text-xs text-muted-foreground">
-          <Clock className="h-3 w-3" />
+        <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+          <Clock className="h-3.5 w-3.5" />
           {readingTime}초
         </span>
       </div>
 
-      {/* 제목 */}
-      <h2 className="font-serif text-lg md:text-xl font-semibold leading-snug mb-3">
+      {/* 제목 - 더 크고 명확하게 */}
+      <h2 className="font-serif text-xl md:text-2xl font-bold leading-snug mb-5 tracking-tight">
         {news.title}
       </h2>
 
-      {/* 3줄 요약 */}
-      <ul className="space-y-2 mb-4">
+      {/* 3줄 요약 - 넉넉한 행간 */}
+      <ul className="space-y-3 mb-6">
         {news.summary.map((line, i) => (
-          <li key={i} className="text-sm text-foreground/90 leading-relaxed pl-4 relative">
-            <span className="absolute left-0 text-muted-foreground">•</span>
+          <li key={i} className="text-base text-foreground/85 leading-relaxed pl-5 relative">
+            <span className="absolute left-0 top-[0.35em] w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
             {line}
           </li>
         ))}
       </ul>
 
-      {/* 왜 중요한가 */}
-      <div className="bg-highlight rounded p-3 mb-3">
-        <p className="text-sm">
-          <span className="font-medium text-foreground">왜 중요한가:</span>{' '}
-          <span className="text-muted-foreground">{news.whyImportant}</span>
+      {/* 왜 중요한가 - 시각적 구분 강화 */}
+      <div className="bg-highlight border-l-4 border-foreground/20 rounded-r px-4 py-3 mb-4">
+        <p className="text-base leading-relaxed">
+          <span className="font-semibold text-foreground">왜 중요한가</span>
+          <span className="mx-2 text-muted-foreground/50">—</span>
+          <span className="text-foreground/75">{news.whyImportant}</span>
         </p>
       </div>
 
-      {/* 원문 보기 (접기/펼치기) */}
+      {/* 원문 보기 */}
       <Collapsible open={isSourceOpen} onOpenChange={setIsSourceOpen}>
-        <CollapsibleTrigger className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
+        <CollapsibleTrigger className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
           원문 보기
           {isSourceOpen ? (
-            <ChevronUp className="h-3 w-3" />
+            <ChevronUp className="h-4 w-4" />
           ) : (
-            <ChevronDown className="h-3 w-3" />
+            <ChevronDown className="h-4 w-4" />
           )}
         </CollapsibleTrigger>
         
-        <CollapsibleContent className="pt-2">
+        <CollapsibleContent className="pt-3">
           <a
             href={news.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
           >
-            <ExternalLink className="h-3 w-3" />
-            {news.sourceUrl}
+            <ExternalLink className="h-3.5 w-3.5" />
+            원문 기사로 이동
           </a>
         </CollapsibleContent>
       </Collapsible>

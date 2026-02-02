@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,57 +6,56 @@
 
 /* 
   뉴스 큐레이팅 MVP 디자인 시스템
-  - 뉴스페이퍼 스타일: 클래식하고 신뢰감 있는 디자인
-  - 세리프 폰트(제목) + 산세리프(본문)
-  - 흑백 톤 기반 + 카테고리별 포인트 컬러
+  - 타이포그래피 강화: 가독성 극대화
+  - 명확한 위계, 충분한 행간, 적절한 자간
 */
 
 @layer base {
   :root {
-    /* 배경/전경 - 종이 느낌의 따뜻한 흰색 */
-    --background: 40 20% 98%;
-    --foreground: 0 0% 8%;
+    /* 배경/전경 - 눈 편한 오프화이트 */
+    --background: 45 15% 97%;
+    --foreground: 0 0% 12%;
 
-    /* 카드 - 살짝 더 밝은 배경 */
+    /* 카드 */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
+    --card-foreground: 0 0% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover-foreground: 0 0% 12%;
 
-    /* Primary - 신문 스타일의 깊은 검정 */
+    /* Primary - 깊은 검정 */
     --primary: 0 0% 8%;
     --primary-foreground: 0 0% 98%;
 
-    /* Secondary - 부드러운 회색 */
-    --secondary: 0 0% 96%;
+    /* Secondary */
+    --secondary: 0 0% 95%;
     --secondary-foreground: 0 0% 20%;
 
-    /* Muted - 보조 텍스트용 */
+    /* Muted - 보조 텍스트 */
     --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 45%;
+    --muted-foreground: 0 0% 40%;
 
-    /* Accent - 하이라이트 */
+    /* Accent */
     --accent: 0 0% 94%;
     --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    /* 테두리 - 신문 구분선 느낌 */
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
+    /* 테두리 */
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
     --ring: 0 0% 8%;
 
     --radius: 0.25rem;
 
-    /* 카테고리 컬러 - 절제된 포인트 */
-    --category-it: 210 70% 45%;
-    --category-economy: 35 80% 50%;
-    --category-global: 150 50% 40%;
+    /* 카테고리 컬러 */
+    --category-it: 215 60% 40%;
+    --category-economy: 30 70% 45%;
+    --category-global: 160 45% 35%;
 
-    /* 서비스 포인트 컬러 */
-    --highlight: 40 30% 92%;
+    /* 하이라이트 */
+    --highlight: 45 20% 94%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -70,38 +69,38 @@
 
   .dark {
     --background: 0 0% 6%;
-    --foreground: 0 0% 92%;
+    --foreground: 0 0% 90%;
 
     --card: 0 0% 10%;
-    --card-foreground: 0 0% 92%;
+    --card-foreground: 0 0% 90%;
 
     --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 92%;
+    --popover-foreground: 0 0% 90%;
 
-    --primary: 0 0% 92%;
+    --primary: 0 0% 90%;
     --primary-foreground: 0 0% 8%;
 
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 85%;
 
     --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted-foreground: 0 0% 55%;
 
     --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 92%;
+    --accent-foreground: 0 0% 90%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 0 0% 92%;
+    --ring: 0 0% 90%;
 
-    --category-it: 210 60% 55%;
-    --category-economy: 35 70% 55%;
-    --category-global: 150 45% 50%;
+    --category-it: 215 55% 55%;
+    --category-economy: 30 60% 55%;
+    --category-global: 160 40% 50%;
 
-    --highlight: 0 0% 15%;
+    --highlight: 0 0% 14%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -119,25 +118,53 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Noto Sans KR', sans-serif;
+  html {
+    font-size: 17px; /* 기본 폰트 살짝 키움 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* 세리프 폰트 클래스 - 제목용 */
+  @media (min-width: 768px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+
+  /* 세리프 폰트 - 제목용 */
   .font-serif {
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Noto Serif KR', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* 헤딩 스타일 */
+  h1, h2, h3 {
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+
+  /* 본문 스타일 */
+  p, li {
+    line-height: 1.8;
   }
 }
 
 @layer utilities {
-  /* 뉴스페이퍼 구분선 */
-  .newspaper-divider {
-    @apply border-t border-border;
+  /* 뉴스 본문 최적화 */
+  .prose-news {
+    @apply leading-loose tracking-tight;
   }
 
-  /* 읽기 편한 본문 스타일 */
-  .prose-news {
-    @apply leading-relaxed tracking-tight;
+  /* 강조 텍스트 */
+  .text-emphasis {
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
 }
