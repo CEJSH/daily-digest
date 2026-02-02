@@ -68,21 +68,21 @@
   }
 
   /* 웜 베이지 테마 */
-  .theme-warm {
+  :root.theme-warm {
     --background: 35 25% 94%;
     --card: 35 20% 98%;
     --highlight: 35 20% 90%;
   }
 
   /* 쿨 그레이 테마 */
-  .theme-cool {
+  :root.theme-cool {
     --background: 220 10% 95%;
     --card: 220 10% 99%;
     --highlight: 220 10% 91%;
   }
 
   /* 소프트 블루 테마 */
-  .theme-blue {
+  :root.theme-blue {
     --background: 210 30% 96%;
     --card: 210 25% 99%;
     --highlight: 210 25% 92%;
