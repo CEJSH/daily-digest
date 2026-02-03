@@ -1,0 +1,98 @@
+{
+  "date": "2026-02-02",
+  "selectionCriteria": "① 내일도 영향이 남는 이슈 ② 과도한 감정 소모 제외 ③ 어제와 중복되는 뉴스 제외",
+  "question": "정보를 덜 보는 것이 오히려 더 똑똑한 소비일까?",
+  "lastUpdatedAt": "2026-02-02T07:30:00+09:00",
+  "items": [
+    {
+      "id": "2026-02-02_it_1",
+      "date": "2026-02-02",
+      "category": "IT",
+      "title": "AI 에이전트 경쟁, ‘도구 연결’이 승부처로 떠오름",
+      "summary": [
+        "여러 앱/서비스를 자동으로 연결해 작업을 끝내는 에이전트 경쟁이 치열해지고 있습니다.",
+        "핵심은 모델 성능보다 ‘연동 가능한 도구 생태계’와 안정적인 실행 흐름입니다.",
+        "사용자 입장에선 반복 작업 자동화가 가장 직접적인 체감 가치로 연결됩니다."
+      ],
+      "whyImportant": "업무 자동화 제품의 경쟁 기준이 ‘정확도’에서 ‘실행 안정성/통합’으로 이동합니다.",
+      "sourceUrl": "https://example.com/it",
+      "sourceName": "Example",
+      "publishedAt": "2026-02-02T01:00:00Z",
+      "status": "published",
+      "importance": 1,
+      "readTimeSec": 20
+    },
+    {
+      "id": "2026-02-02_economy_1",
+      "date": "2026-02-02",
+      "category": "경제",
+      "title": "금리 기대가 흔들리며 환율 변동성 확대",
+      "summary": [
+        "금리 경로에 대한 해석이 엇갈리면서 환율 변동성이 커지는 흐름입니다.",
+        "단기 이벤트보다 중기 정책 시그널에 시장이 더 민감하게 반응합니다.",
+        "개인 투자·대출은 ‘타이밍’보다 ‘리스크 관리’가 중요해집니다."
+      ],
+      "whyImportant": "환율 변동은 수입물가·여행·해외투자 체감 비용에 바로 영향을 줍니다.",
+      "sourceUrl": "https://example.com/economy",
+      "sourceName": "Example",
+      "publishedAt": "2026-02-02T02:30:00Z",
+      "status": "published",
+      "importance": 2,
+      "readTimeSec": 30
+    },
+    {
+      "id": "2026-02-02_global_1",
+      "date": "2026-02-02",
+      "category": "글로벌",
+      "title": "미·중 공급망 재편, ‘우회 경로’ 규제 강화",
+      "summary": [
+        "공급망 재편 과정에서 우회 수출/원산지 규정이 강화되는 움직임이 있습니다.",
+        "기업들은 비용보다 ‘규제 준수’ 리스크를 더 크게 보기 시작했습니다.",
+        "중장기적으로 특정 품목의 가격·리드타임이 다시 변할 수 있습니다."
+      ],
+      "whyImportant": "소비재·부품 단가에 영향을 줘 국내 물가/기업 실적에도 파급됩니다.",
+      "sourceUrl": "https://example.com/global",
+      "sourceName": "Example",
+      "publishedAt": "2026-02-02T03:10:00Z",
+      "status": "published",
+      "importance": 3,
+      "readTimeSec": 20
+    },
+    {
+      "id": "2026-02-02_it_2",
+      "date": "2026-02-02",
+      "category": "IT",
+      "title": "브라우저 개인정보 보호 강화, 광고 추적 방식 변화",
+      "summary": [
+        "브라우저 단에서 추적 제한이 강화되면서 광고 측정 방식이 바뀌고 있습니다.",
+        "쿠키 의존이 줄고, 서버사이드 측정·컨텍스트 기반이 재부상합니다.",
+        "소규모 퍼블리셔는 데이터 전략이 더 중요해질 수 있습니다."
+      ],
+      "whyImportant": "애드센스 수익 최적화도 ‘트래킹 환경 변화’를 고려해야 합니다.",
+      "sourceUrl": "https://example.com/it2",
+      "sourceName": "Example",
+      "publishedAt": "2026-02-02T04:20:00Z",
+      "status": "published",
+      "importance": 3,
+      "readTimeSec": 20
+    },
+    {
+      "id": "2026-02-02_economy_2",
+      "date": "2026-02-02",
+      "category": "경제",
+      "title": "소비 둔화 신호, 체감경기와 통계의 괴리",
+      "summary": [
+        "지표는 완만하지만 체감경기는 더 빠르게 둔화되는 신호가 관측됩니다.",
+        "필수지출 중심으로 소비가 재배치되는 흐름이 이어지고 있습니다.",
+        "개인/가계는 고정비 점검이 중요한 시기입니다."
+      ],
+      "whyImportant": "소비 패턴 변화는 업종별 매출·채용에도 영향을 줍니다.",
+      "sourceUrl": "https://example.com/economy2",
+      "sourceName": "Example",
+      "publishedAt": "2026-02-02T05:00:00Z",
+      "status": "published",
+      "importance": 3,
+      "readTimeSec": 30
+    }
+  ]
+}

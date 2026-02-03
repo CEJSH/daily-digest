@@ -10,8 +10,8 @@ export interface NewsItem {
   summary: string[]; // 3줄 요약
   whyImportant: string; // 왜 중요한가 1줄
   sourceUrl: string;
-  status: NewsStatus; // 운영/자동화 대비
-  importance: 1 | 2 | 3; // 우선순위 (화면 미노출)
+  status?: NewsStatus; // 운영/자동화 대비
+  importance?: 1 | 2 | 3; // 우선순위 (화면 미노출)
 }
 
 export interface DailyQuestion {

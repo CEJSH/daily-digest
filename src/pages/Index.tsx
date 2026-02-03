@@ -6,22 +6,45 @@ import {
   TodayQuestion,
   EmptyState,
   Footer,
-} from '@/components/news';
-import { sampleNews, sampleQuestion, sampleMeta } from '@/data/sampleNews';
+} from "@/components/news";
+import { useDailyDigest } from "@/hooks/use-daily-digest";
 
 const Index = () => {
-  // 실제 운영 시 API/DB에서 가져올 데이터
-  const news = sampleNews.filter((n) => n.status === 'published');
-  const question = sampleQuestion;
-  const meta = sampleMeta;
+  const state = useDailyDigest();
 
-  const hasNews = news.length > 0;
+  if (state.status === "loading") {
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="container max-w-3xl mx-auto px-4 md:px-6 py-20 text-center text-muted-foreground">
+          불러오는 중…
+        </div>
+      </div>
+    );
+  }
+
+  if (state.status === "error") {
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="container max-w-3xl mx-auto px-4 md:px-6 py-20 text-center">
+          <p className="text-foreground mb-2">
+            오늘은 쉬어가는 날입니다. 내일 아침에 다시 정리해드릴게요.
+          </p>
+          <small className="text-muted-foreground/70">{state.error.message}</small>
+        </div>
+      </div>
+    );
+  }
+
+  const { digest } = state;
+  const items = digest.items ?? [];
+  const hasNews = items.length > 0;
+  const question = { date: digest.date, question: digest.question };
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container max-w-3xl mx-auto px-4 md:px-6">
         {/* 헤더 */}
-        <Header lastUpdatedAt={meta.lastUpdatedAt} />
+        <Header lastUpdatedAt={digest.lastUpdatedAt} />
 
         {/* 선정 기준 토글 */}
         <SelectionCriteria />
@@ -33,7 +56,7 @@ const Index = () => {
         <main className="py-2">
           {hasNews ? (
             <div>
-              {news.map((item, index) => (
+              {items.map((item, index) => (
                 <NewsCard key={item.id} news={item} index={index} />
               ))}
             </div>

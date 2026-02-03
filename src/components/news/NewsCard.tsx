@@ -1,7 +1,15 @@
-import { useState } from 'react';
-import { Clock, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
-import { NewsItem, calculateReadingTime, getCategoryColorClass } from '@/types/news';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { useState } from "react";
+import { Clock, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  NewsItem,
+  calculateReadingTime,
+  getCategoryColorClass,
+} from "@/types/news";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 interface NewsCardProps {
   news: NewsItem;
@@ -16,7 +24,7 @@ export function NewsCard({ news, index }: NewsCardProps) {
     <article className="py-8 md:py-10 border-b border-border last:border-b-0">
       {/* 상단: 카테고리 + 읽는 시간 */}
       <div className="flex items-center justify-between mb-4">
-        <span 
+        <span
           className={`${getCategoryColorClass(news.category)} text-white text-xs font-semibold px-2.5 py-1 rounded`}
         >
           {news.category}
@@ -35,8 +43,11 @@ export function NewsCard({ news, index }: NewsCardProps) {
       {/* 3줄 요약 - 넉넉한 행간 */}
       <ul className="space-y-3 mb-6">
         {news.summary.map((line, i) => (
-          <li key={i} className="text-base text-foreground/85 leading-relaxed pl-5 relative">
-            <span className="absolute left-0 top-[0.35em] w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
+          <li
+            key={i}
+            className="text-base text-foreground/85 leading-relaxed pl-5 relative"
+          >
+            <span className="absolute left-0 top-[0.65em] w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
             {line}
           </li>
         ))}
@@ -61,7 +72,7 @@ export function NewsCard({ news, index }: NewsCardProps) {
             <ChevronDown className="h-4 w-4" />
           )}
         </CollapsibleTrigger>
-        
+
         <CollapsibleContent className="pt-3">
           <a
             href={news.sourceUrl}
