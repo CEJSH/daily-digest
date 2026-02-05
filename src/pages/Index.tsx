@@ -29,7 +29,9 @@ const Index = () => {
           <p className="text-foreground mb-2">
             오늘은 쉬어가는 날입니다. 내일 아침에 다시 정리해드릴게요.
           </p>
-          <small className="text-muted-foreground/70">{state.error.message}</small>
+          <small className="text-muted-foreground/70">
+            {state.error.message}
+          </small>
         </div>
       </div>
     );
@@ -37,7 +39,7 @@ const Index = () => {
 
   const { digest } = state;
   const items = [...(digest.items ?? [])].sort(
-    (a, b) => (a.importance ?? 99) - (b.importance ?? 99)
+    (a, b) => (b.importance ?? 99) - (a.importance ?? 99),
   );
   const hasNews = items.length > 0;
   const question = { date: digest.date, question: digest.question };
