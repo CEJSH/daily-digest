@@ -36,7 +36,9 @@ const Index = () => {
   }
 
   const { digest } = state;
-  const items = digest.items ?? [];
+  const items = [...(digest.items ?? [])].sort(
+    (a, b) => (a.importance ?? 99) - (b.importance ?? 99)
+  );
   const hasNews = items.length > 0;
   const question = { date: digest.date, question: digest.question };
 
