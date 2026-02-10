@@ -7,7 +7,7 @@ export const sampleNews: NewsItem[] = [
   {
     id: '1',
     date: TODAY,
-    category: 'IT',
+    category: '기술',
     title: '애플, AI 기반 시리 대규모 업그레이드 예고',
     summary: [
       '애플이 올해 하반기 iOS 업데이트에서 시리의 대화 능력을 대폭 강화할 예정이다.',
@@ -37,7 +37,7 @@ export const sampleNews: NewsItem[] = [
   {
     id: '3',
     date: TODAY,
-    category: '글로벌',
+    category: '국제',
     title: 'EU, 빅테크 규제 본격 시행... 벌금 규모 사상 최대',
     summary: [
       '유럽연합의 디지털시장법(DMA)이 본격 시행에 들어갔다.',
@@ -52,7 +52,7 @@ export const sampleNews: NewsItem[] = [
   {
     id: '4',
     date: TODAY,
-    category: 'IT',
+    category: '기술',
     title: '오픈AI, GPT-5 개발 중단설 부인... "예정대로 진행"',
     summary: [
       'GPT-5 개발 중단 루머가 퍼졌으나 오픈AI가 공식 부인했다.',

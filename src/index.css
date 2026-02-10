@@ -50,9 +50,18 @@
     --radius: 0.25rem;
 
     /* 카테고리 컬러 */
-    --category-it: 215 60% 40%;
     --category-economy: 30 70% 45%;
-    --category-global: 160 45% 35%;
+    --category-industry: 20 65% 42%;
+    --category-technology: 215 60% 40%;
+    --category-finance: 145 50% 36%;
+    --category-policy: 260 45% 45%;
+    --category-international: 190 55% 40%;
+    --category-society: 350 55% 48%;
+    --category-life: 330 60% 52%;
+    --category-health: 170 45% 42%;
+    --category-environment: 120 40% 38%;
+    --category-energy: 45 85% 50%;
+    --category-mobility: 280 50% 44%;
 
     /* 하이라이트 */
     --highlight: 45 20% 94%;
@@ -117,9 +126,18 @@
     --input: 0 0% 20%;
     --ring: 0 0% 90%;
 
-    --category-it: 215 55% 55%;
     --category-economy: 30 60% 55%;
-    --category-global: 160 40% 50%;
+    --category-industry: 20 58% 54%;
+    --category-technology: 215 55% 55%;
+    --category-finance: 145 45% 50%;
+    --category-policy: 260 42% 58%;
+    --category-international: 190 50% 55%;
+    --category-society: 350 50% 58%;
+    --category-life: 330 55% 60%;
+    --category-health: 170 42% 54%;
+    --category-environment: 120 35% 52%;
+    --category-energy: 45 75% 58%;
+    --category-mobility: 280 45% 56%;
 
     --highlight: 0 0% 14%;
 

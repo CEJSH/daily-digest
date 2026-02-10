@@ -1,4 +1,16 @@
-export type Category = "IT" | "경제" | "글로벌";
+export type Category =
+  | "경제"
+  | "산업"
+  | "기술"
+  | "금융"
+  | "정책"
+  | "국제"
+  | "사회"
+  | "라이프"
+  | "헬스"
+  | "환경"
+  | "에너지"
+  | "모빌리티";
 
 export type NewsItem = {
   id: string;
