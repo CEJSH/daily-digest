@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import { SubscribeCTA } from './SubscribeCTA';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
 interface HeaderProps {
@@ -33,6 +34,9 @@ export function Header({ lastUpdatedAt }: HeaderProps) {
       <p className="text-sm text-muted-foreground tracking-normal">
         업데이트: {format(updatedDate, 'yyyy.MM.dd', { locale: ko })} {formattedUpdateTime}
       </p>
+
+      {/* 무료 구독 CTA */}
+      <SubscribeCTA />
     </header>
   );
 }
