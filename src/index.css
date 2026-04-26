@@ -25,17 +25,17 @@
     /* Paper & ink — neutral gray base with restrained indigo accents.
        Hue 220 is the neutral-gray reference; saturation kept low so the
        --accent token carries the indigo identity, not the surfaces. */
-    --background: 220 12% 95%;
+    --background: 220 6% 98%;
     --foreground: 220 14% 9%;
 
-    --card: 220 10% 98%;
+    --card: 0 0% 100%;
     --card-foreground: 220 14% 9%;
 
-    --popover: 220 10% 98%;
+    --popover: 0 0% 100%;
     --popover-foreground: 220 14% 9%;
 
     --primary: 220 14% 9%;
-    --primary-foreground: 220 12% 95%;
+    --primary-foreground: 220 6% 98%;
 
     --secondary: 220 10% 90%;
     --secondary-foreground: 220 14% 16%;
