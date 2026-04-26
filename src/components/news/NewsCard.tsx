@@ -111,9 +111,11 @@ export function NewsCard({ news, index }: NewsCardProps) {
             {sourceLabel}
           </span>
           <ArrowUpRight
+            aria-hidden
             className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
             strokeWidth={1.6}
           />
+          <span className="sr-only">(새 창에서 열림)</span>
         </a>
       </div>
     </article>
