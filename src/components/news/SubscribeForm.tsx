@@ -81,7 +81,7 @@ export function SubscribeForm() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="inline-flex items-center justify-center border border-foreground/40 px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center justify-center bg-foreground px-5 py-2 text-sm font-medium tracking-tight text-background transition-colors hover:bg-foreground/85 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === "submitting" ? "확인 중…" : "구독하기"}
             </button>
