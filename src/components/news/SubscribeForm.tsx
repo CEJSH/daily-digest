@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -105,6 +106,20 @@ export function SubscribeForm() {
             aria-live="assertive"
           >
             {errorMessage}
+          </p>
+        )}
+
+        {/* 폼이 노출 중인 동안만 안내. 성공 상태에서는 의미 없음. */}
+        {status !== "success" && (
+          <p className="mt-5 text-xs leading-relaxed text-foreground/65">
+            구독 시{" "}
+            <Link
+              to="/privacy"
+              className="underline underline-offset-2 transition-colors hover:text-foreground"
+            >
+              개인정보 처리방침
+            </Link>
+            에 동의합니다. 언제든 메일 하단 1클릭으로 해지할 수 있습니다.
           </p>
         )}
       </div>
