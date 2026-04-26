@@ -70,12 +70,12 @@ export function SelectionCriteria() {
               편집 원칙
             </span>
             {!isOpen && (
-              <span className="text-xs leading-relaxed text-foreground/55 sm:hidden">
+              <span className="text-xs leading-relaxed text-foreground/65 sm:hidden">
                 {MOBILE_PREVIEW}
               </span>
             )}
           </span>
-          <span className="relative inline-flex h-5 w-5 shrink-0 items-center justify-center text-foreground/50">
+          <span className="relative inline-flex h-5 w-5 shrink-0 items-center justify-center text-foreground/65">
             <Plus
               className={`absolute h-4 w-4 transition-all duration-150 ease-out motion-reduce:transition-none ${
                 isOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"

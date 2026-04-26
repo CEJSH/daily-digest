@@ -14,7 +14,7 @@ export function TodayQuestion({ question }: TodayQuestionProps) {
           <p className="pull-quote font-serif text-2xl font-medium leading-[1.4] tracking-[-0.02em] text-foreground md:text-[2rem]">
             {question.question}
           </p>
-          <p className="mt-6 text-sm text-foreground/55">
+          <p className="mt-6 text-sm text-foreground/65">
             잠시 멈춰, 오늘 읽은 뉴스가 자신에게 어떤 의미였는지 생각해보세요.
           </p>
         </div>

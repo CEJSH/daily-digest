@@ -17,7 +17,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="eyebrow mb-4 text-foreground/55">Read</p>
+          <p className="eyebrow mb-4 text-foreground/65">Read</p>
           <ul className="space-y-2 text-sm">
             <li>
               <Link
@@ -39,7 +39,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="eyebrow mb-4 text-foreground/55">About</p>
+          <p className="eyebrow mb-4 text-foreground/65">About</p>
           <ul className="space-y-2 text-sm">
             <li>
               <span className="text-foreground/75">편집 원칙</span>
@@ -51,7 +51,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-foreground/45 md:flex-row md:items-center md:justify-between">
+      <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-foreground/65 md:flex-row md:items-center md:justify-between">
         <p>© {year} Daily Digest. All rights reserved.</p>
         <p>Crafted with care · 매일 아침 06:00 KST</p>
       </div>

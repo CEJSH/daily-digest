@@ -38,7 +38,7 @@ export function SubscribeForm() {
       className="border-t border-rule/20 py-16 md:py-20"
     >
       <div className="mx-auto max-w-prose">
-        <p className="eyebrow mb-3 text-foreground/55">Subscribe</p>
+        <p className="eyebrow mb-3 text-foreground/65">Subscribe</p>
         <p className="font-serif text-xl font-medium leading-snug text-foreground md:text-2xl">
           매일 아침 06:00, 메일함에서 만나요
         </p>
@@ -74,7 +74,7 @@ export function SubscribeForm() {
                 aria-describedby={
                   errorMessage ? "subscribe-error" : undefined
                 }
-                className="w-full border-0 border-b border-foreground/30 bg-transparent py-2 text-base text-foreground transition-colors placeholder:text-foreground/40 focus:border-foreground"
+                className="w-full border-0 border-b border-foreground/30 bg-transparent py-2 text-base text-foreground transition-colors placeholder:text-foreground/65 focus:border-foreground"
               />
             </label>
             <button
@@ -90,7 +90,7 @@ export function SubscribeForm() {
         {errorMessage && (
           <p
             id="subscribe-error"
-            className="mt-3 text-sm text-foreground/55"
+            className="mt-3 text-sm text-foreground/65"
             role="alert"
             aria-live="assertive"
           >

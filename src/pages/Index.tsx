@@ -21,7 +21,7 @@ const Index = () => {
       <div className="min-h-screen bg-background">
         <TopBar />
         <div className="mx-auto max-w-prose px-6 py-32 text-center md:px-8">
-          <p className="eyebrow text-foreground/45">Loading</p>
+          <p className="eyebrow text-foreground/65">Loading</p>
           <p className="mt-3 font-serif text-lg text-foreground/70">
             오늘의 다이제스트를 불러오는 중입니다…
           </p>
@@ -42,7 +42,7 @@ const Index = () => {
           <p className="mt-4 text-base text-foreground/65">
             내일 아침에 다시 정리해 전해드리겠습니다.
           </p>
-          <p className="mt-8 text-xs text-foreground/40">
+          <p className="mt-8 text-xs text-foreground/65">
             {state.error.message}
           </p>
         </div>

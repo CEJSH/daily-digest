@@ -20,7 +20,7 @@ const Archive = () => {
         </header>
 
         <section className="border-y border-border py-20 text-center">
-          <p className="eyebrow text-foreground/45">Coming Soon</p>
+          <p className="eyebrow text-foreground/65">Coming Soon</p>
           <p className="mt-4 font-serif text-xl text-foreground/70 md:text-2xl">
             준비 중입니다.
           </p>

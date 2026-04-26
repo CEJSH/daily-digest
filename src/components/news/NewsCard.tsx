@@ -48,7 +48,7 @@ export function NewsCard({ news, index }: NewsCardProps) {
           </span>
         </span>
         <span aria-hidden className="text-foreground/30">·</span>
-        <span className="inline-flex items-center gap-1 text-xs text-foreground/45">
+        <span className="inline-flex items-center gap-1 text-xs text-foreground/65">
           <Clock3 className="h-3 w-3" strokeWidth={1.5} />
           {formatReadingTimeMinutes(readingTime)}
         </span>
@@ -89,7 +89,7 @@ export function NewsCard({ news, index }: NewsCardProps) {
         </ul>
 
         {news.context && (
-          <p className="text-sm leading-relaxed text-foreground/55">
+          <p className="text-sm leading-relaxed text-foreground/65">
             {news.context}
           </p>
         )}
