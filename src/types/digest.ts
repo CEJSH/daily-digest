@@ -45,8 +45,11 @@ export const NewsItemSchema = z.object({
   source: NewsSourceSchema.optional(),
   isLead: z.boolean().optional(),
   lead: z.string().optional(),
-  status: z.enum(["draft", "published"]).optional(),
-  importance: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
+  // 외부 데이터는 관대하게 받고 내부에서 의미 부여한다.
+  // - 'draft'만 숨김 처리되며, 그 외 값('published', 'kept', 미래의 무엇이든)은 노출.
+  // - importance는 정렬 키로만 쓰이므로 임의의 숫자 허용.
+  status: z.string().optional(),
+  importance: z.number().optional(),
   // 레거시/운영 필드 (graceful degradation)
   sourceName: z.string().optional(),
   publishedAt: z.string().optional(),
