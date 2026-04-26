@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Loader2 } from "lucide-react";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -81,8 +82,16 @@ export function SubscribeForm() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="inline-flex items-center justify-center bg-foreground px-5 py-2 text-sm font-medium tracking-tight text-background transition-colors hover:bg-foreground/85 disabled:cursor-not-allowed disabled:opacity-60"
+              aria-busy={status === "submitting"}
+              className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-2 text-sm font-medium tracking-tight text-background transition-colors hover:bg-foreground/85 disabled:cursor-not-allowed disabled:opacity-60"
             >
+              {status === "submitting" && (
+                <Loader2
+                  aria-hidden
+                  className="h-4 w-4 animate-spin motion-reduce:animate-none"
+                  strokeWidth={1.8}
+                />
+              )}
               {status === "submitting" ? "확인 중…" : "구독하기"}
             </button>
           </form>
