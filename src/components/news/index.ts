@@ -8,4 +8,5 @@ export { TodayQuestion } from './TodayQuestion';
 export { SubscribeForm } from './SubscribeForm';
 export { EmptyState } from './EmptyState';
 export { Footer } from './Footer';
+export { SubscribeCTA } from './SubscribeCTA';
 export { ThemeSwitcher } from './ThemeSwitcher';
