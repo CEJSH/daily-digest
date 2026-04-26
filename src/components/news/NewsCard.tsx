@@ -1,15 +1,9 @@
-import { useState } from "react";
-import { Clock, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowUpRight, Clock3 } from "lucide-react";
 import {
   NewsItem,
   calculateReadingTime,
   getCategoryColorClass,
 } from "@/types/news";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 
 interface NewsCardProps {
   news: NewsItem;
@@ -17,74 +11,109 @@ interface NewsCardProps {
 }
 
 export function NewsCard({ news, index }: NewsCardProps) {
-  const [isSourceOpen, setIsSourceOpen] = useState(false);
-  const readingTime = calculateReadingTime(news.summary);
+  const readingTime = calculateReadingTime(news);
+  const number = String(index + 1).padStart(2, "0");
+  const dotClass = getCategoryColorClass(news.category);
+
+  const sourceHref = news.source?.url ?? news.sourceUrl;
+  const sourceName = news.source?.name ?? news.sourceName;
+  const sourceLabel = sourceName ? `원문 보기 — ${sourceName}` : "원문 보기";
+
+  const isLead = news.isLead === true;
+
+  // Lead는 영구 좌측 보더로 차별화, 비-Lead는 호버 시 슬라이드 affordance.
+  // 두 효과는 상호배타 — Lead는 이미 영구 시그널이 있어 호버 추가 불필요.
+  const articleAccentClass = isLead
+    ? "border-l border-l-accent-quiet pl-3 md:pl-4"
+    : "before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:w-px before:-translate-x-1 before:bg-accent-quiet before:opacity-0 before:transition before:duration-150 before:ease-out hover:before:translate-x-0 hover:before:opacity-100 motion-reduce:before:transition-none";
+
+  const headlineSizeClass = isLead
+    ? "text-[1.8rem] md:text-[2.5rem]"
+    : "text-[1.5rem] md:text-[1.875rem]";
 
   return (
-    <article className="py-8 md:py-10 border-b border-border last:border-b-0">
-      {/* 상단: 카테고리 + 읽는 시간 */}
-      <div className="flex items-center justify-between mb-4">
-        <span
-          className={`${getCategoryColorClass(news.category)} text-white text-xs font-semibold px-2.5 py-1 rounded`}
+    <article
+      className={`group relative grid grid-cols-[auto_1fr] items-baseline gap-x-4 gap-y-3 border-b border-border py-10 md:grid-cols-[3.25rem_1fr] md:gap-x-8 md:gap-y-4 md:py-14 ${articleAccentClass}`}
+    >
+      {/* 챕터 번호 — 모바일: row1 col1, 데스크톱: row2 col1.
+          데스크톱에서는 grid items-baseline이 번호 baseline과 헤드라인 first 라인 baseline을 자동 정렬한다. */}
+      <span className="font-serif text-2xl font-bold leading-[1.2] text-accent md:col-start-1 md:row-start-2 md:text-3xl">
+        {number}
+      </span>
+
+      {/* Kicker — 카테고리·읽기시간 가로 한 줄, 헤드라인 위에 위치 */}
+      <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 leading-none md:col-start-2 md:row-start-1">
+        <span className="inline-flex items-center gap-1.5">
+          <span
+            className={`inline-block h-1.5 w-1.5 rounded-full ${dotClass}`}
+            aria-hidden
+          />
+          <span className="eyebrow text-foreground/70">
+            {news.category}
+          </span>
+        </span>
+        <span aria-hidden className="text-foreground/30">·</span>
+        <span className="inline-flex items-center gap-1 text-xs text-foreground/45">
+          <Clock3 className="h-3 w-3" strokeWidth={1.5} />
+          {readingTime}s read
+        </span>
+      </div>
+
+      {/* 본문 — 모바일: row2 풀폭(col-span-2), 데스크톱: row2 col2 */}
+      <div className="col-span-2 space-y-6 md:col-span-1 md:col-start-2 md:row-start-2">
+        <h2 className={`font-serif font-bold leading-[1.2] tracking-[-0.02em] ${headlineSizeClass}`}>
+          {news.title}
+        </h2>
+
+        {isLead && news.lead && (
+          <p className="font-serif text-base leading-relaxed text-foreground/65 md:text-lg">
+            {news.lead}
+          </p>
+        )}
+
+        <ul className="space-y-3">
+          {news.summary.map((line, i) => (
+            <li
+              key={i}
+              className="relative pl-5 text-[0.975rem] leading-[1.75] text-foreground/85 md:text-base"
+            >
+              <span
+                className="absolute left-0 top-[0.85em] h-px w-3 bg-foreground/30"
+                aria-hidden
+              />
+              {line}
+            </li>
+          ))}
+        </ul>
+
+        {news.context && (
+          <p className="text-sm leading-relaxed text-foreground/55">
+            {news.context}
+          </p>
+        )}
+
+        <div className="border-l-2 border-accent pl-5">
+          <p className="eyebrow mb-2 text-accent">왜 중요한가</p>
+          <p className="text-[0.975rem] leading-[1.7] text-foreground/80 md:text-base">
+            {news.whyImportant}
+          </p>
+        </div>
+
+        <a
+          href={sourceHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group/link inline-flex items-center gap-1.5 text-sm text-foreground/70 transition-colors hover:text-foreground"
         >
-          {news.category}
-        </span>
-        <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-          <Clock className="h-3.5 w-3.5" />
-          {readingTime}초
-        </span>
+          <span className="border-b border-foreground/30 pb-0.5 transition-colors group-visited/link:border-rule/40 group-hover/link:border-foreground">
+            {sourceLabel}
+          </span>
+          <ArrowUpRight
+            className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+            strokeWidth={1.6}
+          />
+        </a>
       </div>
-
-      {/* 제목 - 더 크고 명확하게 */}
-      <h2 className="font-serif text-xl md:text-2xl font-bold leading-snug mb-5 tracking-tight">
-        {news.title}
-      </h2>
-
-      {/* 3줄 요약 - 넉넉한 행간 */}
-      <ul className="space-y-3 mb-6">
-        {news.summary.map((line, i) => (
-          <li
-            key={i}
-            className="text-base text-foreground/85 leading-relaxed pl-5 relative"
-          >
-            <span className="absolute left-0 top-[0.65em] w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
-            {line}
-          </li>
-        ))}
-      </ul>
-
-      {/* 왜 중요한가 - 시각적 구분 강화 */}
-      <div className="bg-highlight border-l-4 border-foreground/20 rounded-r px-4 py-3 mb-4">
-        <p className="text-base leading-relaxed">
-          <span className="font-semibold text-foreground">왜 중요한가</span>
-          <span className="mx-2 text-muted-foreground/50">—</span>
-          <span className="text-foreground/75">{news.whyImportant}</span>
-        </p>
-      </div>
-
-      {/* 원문 보기 */}
-      <Collapsible open={isSourceOpen} onOpenChange={setIsSourceOpen}>
-        <CollapsibleTrigger className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
-          원문 보기
-          {isSourceOpen ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
-        </CollapsibleTrigger>
-
-        <CollapsibleContent className="pt-3">
-          <a
-            href={news.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
-          >
-            <ExternalLink className="h-3.5 w-3.5" />
-            원문 기사로 이동
-          </a>
-        </CollapsibleContent>
-      </Collapsible>
     </article>
   );
 }

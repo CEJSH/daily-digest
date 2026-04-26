@@ -1,8 +1,11 @@
+export { TopBar } from './TopBar';
 export { Header } from './Header';
 export { SelectionCriteria } from './SelectionCriteria';
 export { EditorNote } from './EditorNote';
 export { NewsCard } from './NewsCard';
+export { ClosingNote } from './ClosingNote';
 export { TodayQuestion } from './TodayQuestion';
+export { SubscribeForm } from './SubscribeForm';
 export { EmptyState } from './EmptyState';
 export { Footer } from './Footer';
 export { ThemeSwitcher } from './ThemeSwitcher';

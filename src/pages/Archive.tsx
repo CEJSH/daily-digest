@@ -1,22 +1,44 @@
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import { TopBar, Footer } from "@/components/news";
+
 const Archive = () => {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container max-w-3xl mx-auto px-4 md:px-6 py-12">
-        <h1 className="font-serif text-2xl md:text-3xl font-bold text-center mb-8">
-          지난 뉴스 아카이브
-        </h1>
-        
-        <div className="text-center py-16">
-          <p className="text-muted-foreground mb-4">
-            아직 준비 중입니다
+      <TopBar />
+
+      <div className="mx-auto max-w-prose px-6 md:px-8">
+        <header className="pb-10 pt-12 md:pb-14 md:pt-16">
+          <p className="eyebrow text-accent">Archive</p>
+          <h1 className="mt-4 font-serif text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] md:text-[3rem]">
+            지난 호 모아보기
+          </h1>
+          <p className="mt-6 max-w-prose text-base leading-relaxed text-foreground/65 md:text-[1.0625rem]">
+            아직 아카이브를 준비하고 있습니다.
+            과거 다이제스트는 곧 이곳에서 다시 읽어볼 수 있게 됩니다.
           </p>
-          <a
-            href="/"
-            className="text-sm text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
+        </header>
+
+        <section className="border-y border-border py-20 text-center">
+          <p className="eyebrow text-foreground/45">Coming Soon</p>
+          <p className="mt-4 font-serif text-xl text-foreground/70 md:text-2xl">
+            준비 중입니다.
+          </p>
+          <Link
+            to="/"
+            className="group mt-10 inline-flex items-center gap-1.5 text-sm text-foreground/65 transition-colors hover:text-foreground"
           >
-            ← 오늘의 뉴스로 돌아가기
-          </a>
-        </div>
+            <ArrowLeft
+              className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5"
+              strokeWidth={1.6}
+            />
+            <span className="border-b border-foreground/20 pb-0.5 transition-colors group-hover:border-foreground">
+              오늘의 다이제스트로 돌아가기
+            </span>
+          </Link>
+        </section>
+
+        <Footer />
       </div>
     </div>
   );

@@ -1,107 +1,72 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
-type ThemeVars = {
-  background: string;
-  card: string;
-  highlight: string;
-};
+type Mode = "light" | "dark";
 
-type Theme = {
-  id: string;
-  name: string;
-  color: string;
-  vars?: ThemeVars;
-  isDark?: boolean;
-};
+const STORAGE_KEY = "dd.v1.theme";
+const LEGACY_STORAGE_KEY = "news-theme-mode";
 
-const themes: Theme[] = [
-  { id: 'default', name: '오프화이트', color: 'bg-[hsl(45,15%,97%)]' },
-  {
-    id: 'warm',
-    name: '웜 베이지',
-    color: 'bg-[hsl(35,25%,94%)]',
-    vars: { background: '35 25% 94%', card: '35 20% 98%', highlight: '35 20% 90%' },
-  },
-  {
-    id: 'cool',
-    name: '쿨 그레이',
-    color: 'bg-[hsl(220,10%,95%)]',
-    vars: { background: '220 10% 95%', card: '220 10% 99%', highlight: '220 10% 91%' },
-  },
-  {
-    id: 'blue',
-    name: '소프트 블루',
-    color: 'bg-[hsl(210,30%,96%)]',
-    vars: { background: '210 30% 96%', card: '210 25% 99%', highlight: '210 25% 92%' },
-  },
-  { id: 'dark', name: '다크', color: 'bg-[hsl(0,0%,10%)]', isDark: true },
-];
+function readInitialMode(): Mode {
+  if (typeof window === "undefined") return "light";
+  let stored = window.localStorage.getItem(STORAGE_KEY);
+  if (stored !== "light" && stored !== "dark") {
+    const legacy = window.localStorage.getItem(LEGACY_STORAGE_KEY);
+    if (legacy === "light" || legacy === "dark") {
+      stored = legacy;
+      try {
+        window.localStorage.setItem(STORAGE_KEY, legacy);
+        window.localStorage.removeItem(LEGACY_STORAGE_KEY);
+      } catch {
+        /* private mode may block writes; ignore */
+      }
+    }
+  }
+  if (stored === "light" || stored === "dark") return stored;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function applyMode(mode: Mode) {
+  const root = document.documentElement;
+  root.classList.toggle("dark", mode === "dark");
+}
 
 export function ThemeSwitcher() {
-  const [currentTheme, setCurrentTheme] = useState('default');
+  const [mode, setMode] = useState<Mode>("light");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('news-theme') || 'default';
-    setCurrentTheme(savedTheme);
-    applyTheme(savedTheme);
+    const initial = readInitialMode();
+    setMode(initial);
+    applyMode(initial);
   }, []);
 
-  const applyTheme = (themeId: string) => {
-    const root = document.documentElement;
-    const theme = themes.find(t => t.id === themeId);
-
-    // Clear any inline overrides so defaults can apply
-    root.style.removeProperty('--background');
-    root.style.removeProperty('--card');
-    root.style.removeProperty('--highlight');
-    
-    // Remove all theme classes
-    themes.forEach(t => root.classList.remove(`theme-${t.id}`));
-    
-    // Add new theme class
-    if (themeId !== 'default') {
-      root.classList.add(`theme-${themeId}`);
-    }
-    
-    // Handle dark mode
-    if (theme?.isDark) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-
-    // Apply theme variables directly for light themes (guaranteed override)
-    if (theme?.vars) {
-      root.style.setProperty('--background', theme.vars.background);
-      root.style.setProperty('--card', theme.vars.card);
-      root.style.setProperty('--highlight', theme.vars.highlight);
-    }
+  const toggle = () => {
+    const next: Mode = mode === "light" ? "dark" : "light";
+    setMode(next);
+    applyMode(next);
+    window.localStorage.setItem(STORAGE_KEY, next);
   };
 
-  const handleThemeChange = (themeId: string) => {
-    setCurrentTheme(themeId);
-    localStorage.setItem('news-theme', themeId);
-    applyTheme(themeId);
-  };
+  const isDark = mode === "dark";
 
   return (
-    <div className="flex items-center justify-center gap-2 py-4">
-      <span className="text-xs text-muted-foreground mr-2">배경색</span>
-      <div className="flex gap-1.5">
-        {themes.map((theme) => (
-          <button
-            key={theme.id}
-            onClick={() => handleThemeChange(theme.id)}
-            className={`w-6 h-6 rounded-full border-2 transition-all ${theme.color} ${
-              currentTheme === theme.id 
-                ? 'border-foreground scale-110' 
-                : 'border-border hover:border-foreground/50'
-            } ${theme.id === 'dark' ? 'ring-1 ring-inset ring-white/20' : ''}`}
-            title={theme.name}
-            aria-label={`${theme.name} 테마로 변경`}
-          />
-        ))}
-      </div>
-    </div>
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={isDark ? "라이트 모드로 전환" : "다크 모드로 전환"}
+      className="group inline-flex h-9 w-9 items-center justify-center text-foreground/70 transition-colors hover:text-foreground"
+    >
+      <Sun
+        className={`h-[18px] w-[18px] transition-all ${
+          isDark ? "rotate-90 scale-0" : "rotate-0 scale-100"
+        }`}
+        strokeWidth={1.6}
+      />
+      <Moon
+        className={`absolute h-[18px] w-[18px] transition-all ${
+          isDark ? "rotate-0 scale-100" : "-rotate-90 scale-0"
+        }`}
+        strokeWidth={1.6}
+      />
+    </button>
   );
 }
