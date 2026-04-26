@@ -19,7 +19,7 @@ export function TopBar() {
           {/* Menu — sans, 70% 농도, 트래킹 0.08em */}
           <Link
             to="/archive"
-            className="hidden px-3 py-2 text-[0.6875rem] font-medium tracking-[0.08em] text-foreground/70 transition-colors hover:text-foreground sm:inline-block"
+            className="hidden px-3 py-2 text-[0.6875rem] font-medium tracking-[0.08em] text-foreground/70 underline-offset-4 transition-colors hover:text-foreground hover:underline sm:inline-block"
           >
             지난 호
           </Link>
