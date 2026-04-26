@@ -183,6 +183,15 @@
     line-height: 1.7;
   }
 
+  /* 키보드 포커스 인디케이터 — 모든 인터랙티브 요소에 2px 액센트 outline.
+     마우스 클릭에는 미노출(focus-visible), 키보드 탐색 시에만 표시.
+     shadcn/ui 컴포넌트의 ring shadow와 공존 가능하나 시각적 강조가
+     겹칠 수 있음(의도된 강조). --ring 토큰은 light/dark 자동 대응. */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
   ::selection {
     background: hsl(var(--accent) / 0.18);
     color: hsl(var(--foreground));
