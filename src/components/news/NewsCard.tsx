@@ -2,6 +2,7 @@ import { ArrowUpRight, Clock3 } from "lucide-react";
 import {
   NewsItem,
   calculateReadingTime,
+  formatReadingTimeMinutes,
   getCategoryColorClass,
 } from "@/types/news";
 
@@ -55,7 +56,7 @@ export function NewsCard({ news, index }: NewsCardProps) {
         <span aria-hidden className="text-foreground/30">·</span>
         <span className="inline-flex items-center gap-1 text-xs text-foreground/45">
           <Clock3 className="h-3 w-3" strokeWidth={1.5} />
-          {readingTime}s read
+          {formatReadingTimeMinutes(readingTime)}
         </span>
       </div>
 

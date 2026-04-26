@@ -35,6 +35,13 @@ export function calculateReadingTime(item: NewsItem): number {
   return Math.ceil(seconds / 5) * 5;
 }
 
+// 초 → "약 N분" 표기. 1분 미만은 "1분"으로 클램프.
+// 카드 단위, 호 전체 합계 양쪽에서 동일한 라벨 형식을 보장.
+export function formatReadingTimeMinutes(seconds: number): string {
+  const minutes = Math.max(1, Math.round(seconds / 60));
+  return `약 ${minutes}분`;
+}
+
 // 카테고리별 색상 클래스
 export function getCategoryColorClass(category: Category): string {
   switch (category) {

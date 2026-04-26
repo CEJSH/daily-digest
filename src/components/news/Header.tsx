@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { ko } from 'date-fns/locale';
 import { SubscribeCTA } from './SubscribeCTA';
 import { ThemeSwitcher } from './ThemeSwitcher';
+import { formatReadingTimeMinutes } from '@/types/news';
 
 interface HeaderProps {
   lastUpdatedAt: string;
@@ -16,6 +17,11 @@ interface HeaderProps {
    * 비어 있으면 메타 라인 미노출.
    */
   categoryCounts?: Array<{ category: string; count: number }>;
+  /**
+   * 이번 호 전체 읽기 시간(초). 마스트헤드 하단에 "한 호 읽는 데
+   * 약 N분"으로 표기. 0 또는 미전달 시 미노출.
+   */
+  totalReadingSeconds?: number;
 }
 
 function issueNumberFor(date: Date): string {
@@ -29,6 +35,7 @@ export function Header({
   lastUpdatedAt,
   emphasisScope = "phrase",
   categoryCounts,
+  totalReadingSeconds,
 }: HeaderProps) {
   const { longDate, updatedTime, updatedDay, issueNo, yearLine } = useMemo(() => {
     const today = new Date();
@@ -78,6 +85,12 @@ export function Header({
           {categoryCounts
             .map(({ category, count }) => `${category} ${count}`)
             .join(" · ")}
+        </p>
+      )}
+
+      {typeof totalReadingSeconds === "number" && totalReadingSeconds > 0 && (
+        <p className="mt-2 text-xs text-foreground/55 md:text-right">
+          한 호 읽는 데 {formatReadingTimeMinutes(totalReadingSeconds)}
         </p>
       )}
 

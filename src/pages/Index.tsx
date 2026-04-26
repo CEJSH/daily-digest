@@ -11,6 +11,7 @@ import {
   Footer,
 } from "@/components/news";
 import { useDailyDigest } from "@/hooks/use-daily-digest";
+import { calculateReadingTime } from "@/types/news";
 
 const Index = () => {
   const state = useDailyDigest();
@@ -65,6 +66,11 @@ const Index = () => {
     .map(([category, count]) => ({ category, count }))
     .sort((a, b) => b.count - a.count);
 
+  const totalReadingSeconds = items.reduce(
+    (sum, item) => sum + calculateReadingTime(item),
+    0,
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <TopBar />
@@ -73,6 +79,7 @@ const Index = () => {
         <Header
           lastUpdatedAt={digest.lastUpdatedAt}
           categoryCounts={categoryCounts}
+          totalReadingSeconds={totalReadingSeconds}
         />
         <SelectionCriteria />
         <EditorNote />
