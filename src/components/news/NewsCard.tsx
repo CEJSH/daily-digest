@@ -92,9 +92,9 @@ export function NewsCard({ news, index }: NewsCardProps) {
           </p>
         )}
 
-        <div className="border-l-2 border-accent pl-5">
+        <div className="border-l-4 border-accent bg-callout-bg p-5 md:p-6">
           <p className="eyebrow mb-2 text-accent">왜 중요한가</p>
-          <p className="text-[0.975rem] leading-[1.7] text-foreground/80 md:text-base">
+          <p className="text-[0.975rem] leading-[1.7] text-foreground/85 md:text-base">
             {news.whyImportant}
           </p>
         </div>
