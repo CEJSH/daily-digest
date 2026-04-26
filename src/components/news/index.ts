@@ -1,3 +1,4 @@
+export { Logo } from './Logo';
 export { TopBar } from './TopBar';
 export { Header } from './Header';
 export { SelectionCriteria } from './SelectionCriteria';

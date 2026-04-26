@@ -86,10 +86,10 @@ function buildTree({ headline, volNumber, formattedDate }) {
             {
               fontSize: 36,
               fontWeight: 700,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.04em",
               color: COLORS.foreground,
             },
-            "Daily Digest",
+            "PICKY",
           ),
           div(
             {
@@ -139,7 +139,7 @@ function buildTree({ headline, volNumber, formattedDate }) {
               fontSize: 18,
               color: COLORS.subtle,
             },
-            "Daily Digest · 매일 아침 06:00 KST",
+            "PICKY · 매일 아침 06:00 KST",
           ),
         ],
       ),
