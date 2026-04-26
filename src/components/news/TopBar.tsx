@@ -4,7 +4,7 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export function TopBar() {
   return (
-    <div className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-md">
+    <div className="sticky top-0 z-30 border-b border-border bg-card/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-editorial items-center justify-between px-6 py-3 md:px-8">
         <Link to="/" className="group flex flex-col items-start leading-tight md:flex-row md:items-center md:gap-3">
           <Logo size="md" />

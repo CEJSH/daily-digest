@@ -80,7 +80,7 @@ export function Logo({
 
   const Wordmark = (
     <span
-      className={`font-sans font-bold tracking-tight text-foreground ${text}`}
+      className={`font-sans font-bold tracking-tight text-foreground dark:text-white ${text}`}
     >
       PICKY
     </span>
