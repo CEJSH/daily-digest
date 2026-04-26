@@ -34,8 +34,9 @@ export function SubscribeForm() {
 
   return (
     <section
+      id="subscribe"
       data-area="subscribe"
-      className="border-t border-rule/20 py-16 md:py-20"
+      className="scroll-mt-20 border-t border-rule/20 py-16 md:py-20"
     >
       <div className="mx-auto max-w-prose">
         <p className="eyebrow mb-3 text-foreground/65">Subscribe</p>
