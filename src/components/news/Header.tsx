@@ -80,19 +80,10 @@ export function Header({
             .join(" · ")}
         </p>
       )}
-      
-      {/* 날짜 */}
-      <p className="text-base md:text-lg text-foreground/70 font-medium mb-2 tracking-tight">
-        {formattedDate}
-      </p>
-      
-      {/* 업데이트 시각 */}
-      <p className="text-sm text-muted-foreground tracking-normal">
-        업데이트: {format(updatedDate, 'yyyy.MM.dd', { locale: ko })} {formattedUpdateTime}
-      </p>
 
-      {/* 무료 구독 CTA */}
-      <SubscribeCTA />
+      <div className="mt-8">
+        <SubscribeCTA />
+      </div>
     </header>
   );
 }
