@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Build artifact — regenerated on each build by scripts/generate-og.mjs
+public/og.png
