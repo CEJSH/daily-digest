@@ -1,4 +1,6 @@
 import { useState, type FormEvent } from "react";
+import { Link } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -34,11 +36,12 @@ export function SubscribeForm() {
 
   return (
     <section
+      id="subscribe"
       data-area="subscribe"
-      className="border-t border-rule/20 py-16 md:py-20"
+      className="scroll-mt-20 border-t border-rule/20 py-16 md:py-20"
     >
       <div className="mx-auto max-w-prose">
-        <p className="eyebrow mb-3 text-foreground/55">Subscribe</p>
+        <p className="eyebrow mb-3 text-foreground/65">Subscribe</p>
         <p className="font-serif text-xl font-medium leading-snug text-foreground md:text-2xl">
           매일 아침 06:00, 메일함에서 만나요
         </p>
@@ -74,14 +77,22 @@ export function SubscribeForm() {
                 aria-describedby={
                   errorMessage ? "subscribe-error" : undefined
                 }
-                className="w-full border-0 border-b border-foreground/30 bg-transparent py-2 text-base text-foreground transition-colors placeholder:text-foreground/40 focus:border-foreground"
+                className="w-full border-0 border-b border-foreground/30 bg-transparent py-2 text-base text-foreground transition-colors placeholder:text-foreground/65 focus:border-foreground"
               />
             </label>
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="inline-flex items-center justify-center border border-foreground/40 px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background disabled:cursor-not-allowed disabled:opacity-60"
+              aria-busy={status === "submitting"}
+              className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-2 text-sm font-medium tracking-tight text-background transition-colors hover:bg-foreground/85 disabled:cursor-not-allowed disabled:opacity-60"
             >
+              {status === "submitting" && (
+                <Loader2
+                  aria-hidden
+                  className="h-4 w-4 animate-spin motion-reduce:animate-none"
+                  strokeWidth={1.8}
+                />
+              )}
               {status === "submitting" ? "확인 중…" : "구독하기"}
             </button>
           </form>
@@ -90,11 +101,25 @@ export function SubscribeForm() {
         {errorMessage && (
           <p
             id="subscribe-error"
-            className="mt-3 text-sm text-foreground/55"
+            className="mt-3 text-sm text-foreground/65"
             role="alert"
             aria-live="assertive"
           >
             {errorMessage}
+          </p>
+        )}
+
+        {/* 폼이 노출 중인 동안만 안내. 성공 상태에서는 의미 없음. */}
+        {status !== "success" && (
+          <p className="mt-5 text-xs leading-relaxed text-foreground/65">
+            구독 시{" "}
+            <Link
+              to="/privacy"
+              className="underline underline-offset-2 transition-colors hover:text-foreground"
+            >
+              개인정보 처리방침
+            </Link>
+            에 동의합니다. 언제든 메일 하단 1클릭으로 해지할 수 있습니다.
           </p>
         )}
       </div>

@@ -2,6 +2,7 @@ import { ArrowUpRight, Clock3 } from "lucide-react";
 import {
   NewsItem,
   calculateReadingTime,
+  formatReadingTimeMinutes,
   getCategoryColorClass,
 } from "@/types/news";
 
@@ -33,16 +34,10 @@ export function NewsCard({ news, index }: NewsCardProps) {
 
   return (
     <article
-      className={`group relative grid grid-cols-[auto_1fr] items-baseline gap-x-4 gap-y-3 border-b border-border py-10 md:grid-cols-[3.25rem_1fr] md:gap-x-8 md:gap-y-4 md:py-14 ${articleAccentClass}`}
+      className={`group relative border-b border-border py-10 md:py-14 ${articleAccentClass}`}
     >
-      {/* 챕터 번호 — 모바일: row1 col1, 데스크톱: row2 col1.
-          데스크톱에서는 grid items-baseline이 번호 baseline과 헤드라인 first 라인 baseline을 자동 정렬한다. */}
-      <span className="font-serif text-2xl font-bold leading-[1.2] text-accent md:col-start-1 md:row-start-2 md:text-3xl">
-        {number}
-      </span>
-
       {/* Kicker — 카테고리·읽기시간 가로 한 줄, 헤드라인 위에 위치 */}
-      <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 leading-none md:col-start-2 md:row-start-1">
+      <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 leading-none">
         <span className="inline-flex items-center gap-1.5">
           <span
             className={`inline-block h-1.5 w-1.5 rounded-full ${dotClass}`}
@@ -53,18 +48,25 @@ export function NewsCard({ news, index }: NewsCardProps) {
           </span>
         </span>
         <span aria-hidden className="text-foreground/30">·</span>
-        <span className="inline-flex items-center gap-1 text-xs text-foreground/45">
+        <span className="inline-flex items-center gap-1 text-xs text-foreground/65">
           <Clock3 className="h-3 w-3" strokeWidth={1.5} />
-          {readingTime}s read
+          {formatReadingTimeMinutes(readingTime)}
         </span>
       </div>
 
-      {/* 본문 — 모바일: row2 풀폭(col-span-2), 데스크톱: row2 col2 */}
-      <div className="col-span-2 space-y-6 md:col-span-1 md:col-start-2 md:row-start-2">
-        <h2 className={`font-serif font-bold leading-[1.2] tracking-[-0.02em] ${headlineSizeClass}`}>
-          {news.title}
-        </h2>
+      {/* 헤드라인 — 챕터 번호를 인라인 span으로 결합. 와이드 모니터에서
+          좌측 레일에 격리되어 보이는 분리감을 제거하고, 의미상 '장 번호 +
+          제목'을 한 묶음으로 읽히게 한다. aria-hidden으로 SR에는 미노출. */}
+      <h2
+        className={`mt-4 font-serif font-bold leading-[1.2] tracking-[-0.02em] ${headlineSizeClass}`}
+      >
+        <span className="mr-3 text-accent" aria-hidden>
+          {number}
+        </span>
+        {news.title}
+      </h2>
 
+      <div className="mt-6 space-y-6">
         {isLead && news.lead && (
           <p className="font-serif text-base leading-relaxed text-foreground/65 md:text-lg">
             {news.lead}
@@ -87,14 +89,14 @@ export function NewsCard({ news, index }: NewsCardProps) {
         </ul>
 
         {news.context && (
-          <p className="text-sm leading-relaxed text-foreground/55">
+          <p className="text-sm leading-relaxed text-foreground/65">
             {news.context}
           </p>
         )}
 
-        <div className="border-l-2 border-accent pl-5">
+        <div className="border-l-4 border-accent bg-callout-bg p-5 md:p-6">
           <p className="eyebrow mb-2 text-accent">왜 중요한가</p>
-          <p className="text-[0.975rem] leading-[1.7] text-foreground/80 md:text-base">
+          <p className="text-[0.975rem] leading-[1.7] text-foreground/85 md:text-base">
             {news.whyImportant}
           </p>
         </div>
@@ -109,9 +111,11 @@ export function NewsCard({ news, index }: NewsCardProps) {
             {sourceLabel}
           </span>
           <ArrowUpRight
+            aria-hidden
             className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
             strokeWidth={1.6}
           />
+          <span className="sr-only">(새 창에서 열림)</span>
         </a>
       </div>
     </article>

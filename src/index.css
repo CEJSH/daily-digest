@@ -1,5 +1,8 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+/*
+  Font CSS는 index.html의 <link rel="stylesheet">에서 직접 로드한다.
+  CSS @import는 부모 CSS 파싱 후에야 요청이 나가는 *serial* 로드라
+  FCP를 늦춤. <link>는 HTML 파싱 중 *parallel* 로드되어 빠르다.
+*/
 
 @tailwind base;
 @tailwind components;
@@ -56,6 +59,11 @@
        the indigo-quiet identity (outline-based + shadcn ring-based). */
     --ring: 215 22% 38%;
 
+    /* '왜 중요한가' 콜아웃 — 액센트 휴(215)를 미세하게 머금은 옅은 배경.
+       background보다 한 단계 진하고, secondary(중립 회색)와 구분되는
+       indigo-tinted 면(面) 토큰. */
+    --callout-bg: 215 25% 90%;
+
     --radius: 0.125rem;
 
     /* Category accents — uniform 40% L / 35% S so labels sit politely */
@@ -109,6 +117,10 @@
     /* Dark mode focus ring mirrors dark --accent-quiet. */
     --ring: 215 24% 66%;
 
+    /* Dark callout — indigo-tinted dark surface, bg(8%)보다 밝고
+       secondary(14%)와도 구분되는 지점. */
+    --callout-bg: 215 22% 14%;
+
     /* Dark category dots — saturation eased one step so they read as
        quiet markers, not glowing dots. Hue preserved for distinctiveness. */
     --category-economy: 28 40% 60%;
@@ -136,6 +148,14 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    /* 앵커 클릭 시 부드러운 스크롤. SubscribeCTA → #subscribe 등 in-page 이동에 적용. */
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   @media (min-width: 768px) {
@@ -172,6 +192,15 @@
 
   p, li {
     line-height: 1.7;
+  }
+
+  /* 키보드 포커스 인디케이터 — 모든 인터랙티브 요소에 2px 액센트 outline.
+     마우스 클릭에는 미노출(focus-visible), 키보드 탐색 시에만 표시.
+     shadcn/ui 컴포넌트의 ring shadow와 공존 가능하나 시각적 강조가
+     겹칠 수 있음(의도된 강조). --ring 토큰은 light/dark 자동 대응. */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 
   ::selection {

@@ -57,6 +57,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "callout-bg": "hsl(var(--callout-bg))",
         category: {
           economy: "hsl(var(--category-economy))",
           industry: "hsl(var(--category-industry))",
