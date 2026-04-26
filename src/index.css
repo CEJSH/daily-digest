@@ -1,154 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 
-  뉴스 큐레이팅 MVP 디자인 시스템
-  - 타이포그래피 강화: 가독성 극대화
-  - 명확한 위계, 충분한 행간, 적절한 자간
+/*
+  Editorial Daily — Design System
+  Aesthetic: confident editorial publication, warm paper, ink-black type,
+  one accent (sienna), restrained category colors, generous whitespace.
 */
 
 @layer base {
   :root {
-    /* 배경/전경 - 눈 편한 오프화이트 */
-    --background: 45 15% 97%;
-    --foreground: 0 0% 12%;
+    /* Typography tokens — Latin display + Korean myeongjo for headlines,
+       Pretendard for body/UI. Glyph-level fallback handles mixed scripts:
+       Playfair renders Latin, Noto Serif KR fills in Hangul. */
+    --font-serif-kr: "Playfair Display", "Noto Serif KR", "Apple SD Gothic Neo", "맑은 고딕", Georgia, serif;
+    --font-sans-kr: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "맑은 고딕", system-ui, sans-serif;
 
-    /* 카드 */
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 12%;
+    /* Paper & ink — neutral gray base with restrained indigo accents.
+       Hue 220 is the neutral-gray reference; saturation kept low so the
+       --accent token carries the indigo identity, not the surfaces. */
+    --background: 220 12% 95%;
+    --foreground: 220 14% 9%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 12%;
+    --card: 220 10% 98%;
+    --card-foreground: 220 14% 9%;
 
-    /* Primary - 깊은 검정 */
-    --primary: 0 0% 8%;
-    --primary-foreground: 0 0% 98%;
+    --popover: 220 10% 98%;
+    --popover-foreground: 220 14% 9%;
 
-    /* Secondary */
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 20%;
+    --primary: 220 14% 9%;
+    --primary-foreground: 220 12% 95%;
 
-    /* Muted - 보조 텍스트 */
-    --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 40%;
+    --secondary: 220 10% 90%;
+    --secondary-foreground: 220 14% 16%;
 
-    /* Accent */
-    --accent: 0 0% 94%;
-    --accent-foreground: 0 0% 8%;
+    --muted: 220 10% 90%;
+    --muted-foreground: 220 8% 38%;
+    --subtle: 220 8% 56%;
 
-    --destructive: 0 84.2% 60.2%;
+    --accent: 215 38% 36%;
+    --accent-foreground: 220 12% 95%;
+    /* Headline emphasis only — one step lower in saturation than --accent. */
+    --accent-quiet: 215 22% 38%;
+
+    --destructive: 0 70% 45%;
     --destructive-foreground: 0 0% 98%;
 
-    /* 테두리 */
-    --border: 0 0% 88%;
-    --input: 0 0% 88%;
-    --ring: 0 0% 8%;
+    --border: 220 10% 84%;
+    --rule: 220 14% 9%;
+    --input: 220 10% 84%;
+    /* Focus ring mirrors --accent-quiet so all focus indicators share
+       the indigo-quiet identity (outline-based + shadcn ring-based). */
+    --ring: 215 22% 38%;
 
-    --radius: 0.25rem;
+    --radius: 0.125rem;
 
-    /* 카테고리 컬러 */
-    --category-economy: 30 70% 45%;
-    --category-industry: 20 65% 42%;
-    --category-technology: 215 60% 40%;
-    --category-finance: 145 50% 36%;
-    --category-policy: 260 45% 45%;
-    --category-international: 190 55% 40%;
-    --category-society: 350 55% 48%;
-    --category-life: 330 60% 52%;
-    --category-health: 170 45% 42%;
-    --category-environment: 120 40% 38%;
-    --category-energy: 45 85% 50%;
-    --category-mobility: 280 50% 44%;
-
-    /* 하이라이트 */
-    --highlight: 45 20% 94%;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  /* 웜 베이지 테마 */
-  html.theme-warm {
-    --background: 35 25% 94%;
-    --card: 35 20% 98%;
-    --highlight: 35 20% 90%;
-  }
-
-  /* 쿨 그레이 테마 */
-  html.theme-cool {
-    --background: 220 10% 95%;
-    --card: 220 10% 99%;
-    --highlight: 220 10% 91%;
-  }
-
-  /* 소프트 블루 테마 */
-  html.theme-blue {
-    --background: 210 30% 96%;
-    --card: 210 25% 99%;
-    --highlight: 210 25% 92%;
+    /* Category accents — uniform 40% L / 35% S so labels sit politely */
+    --category-economy: 28 55% 38%;
+    --category-industry: 18 45% 38%;
+    --category-technology: 215 45% 38%;
+    --category-finance: 145 35% 30%;
+    --category-policy: 260 35% 42%;
+    --category-international: 195 45% 32%;
+    --category-society: 350 45% 42%;
+    --category-life: 330 45% 46%;
+    --category-health: 170 35% 32%;
+    --category-environment: 130 30% 32%;
+    --category-energy: 38 55% 40%;
+    --category-mobility: 280 38% 40%;
   }
 
   .dark {
-    --background: 0 0% 6%;
-    --foreground: 0 0% 90%;
+    /* Dark mode: same neutral-220 base as light, charcoal not slate-blue. */
+    --background: 220 12% 8%;
+    --foreground: 220 8% 92%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 90%;
+    --card: 220 10% 11%;
+    --card-foreground: 220 8% 92%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 90%;
+    --popover: 220 10% 11%;
+    --popover-foreground: 220 8% 92%;
 
-    --primary: 0 0% 90%;
-    --primary-foreground: 0 0% 8%;
+    --primary: 220 8% 92%;
+    --primary-foreground: 220 12% 8%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 85%;
+    --secondary: 220 10% 14%;
+    --secondary-foreground: 220 8% 86%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 220 10% 14%;
+    --muted-foreground: 220 6% 62%;
+    --subtle: 220 6% 38%;
 
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 90%;
+    /* Dark mode: indigo points sit as dusty blue, not lavender.
+       Drop saturation a step and ease lightness so accents recede on slate. */
+    --accent: 215 38% 66%;
+    --accent-foreground: 220 12% 8%;
+    --accent-quiet: 215 24% 66%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 90%;
+    --border: 220 10% 20%;
+    --rule: 220 8% 92%;
+    --input: 220 10% 20%;
+    /* Dark mode focus ring mirrors dark --accent-quiet. */
+    --ring: 215 24% 66%;
 
-    --category-economy: 30 60% 55%;
-    --category-industry: 20 58% 54%;
-    --category-technology: 215 55% 55%;
-    --category-finance: 145 45% 50%;
-    --category-policy: 260 42% 58%;
-    --category-international: 190 50% 55%;
-    --category-society: 350 50% 58%;
-    --category-life: 330 55% 60%;
-    --category-health: 170 42% 54%;
-    --category-environment: 120 35% 52%;
-    --category-energy: 45 75% 58%;
-    --category-mobility: 280 45% 56%;
-
-    --highlight: 0 0% 14%;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark category dots — saturation eased one step so they read as
+       quiet markers, not glowing dots. Hue preserved for distinctiveness. */
+    --category-economy: 28 40% 60%;
+    --category-industry: 18 36% 58%;
+    --category-technology: 215 40% 64%;
+    --category-finance: 145 26% 56%;
+    --category-policy: 260 28% 64%;
+    --category-international: 195 36% 56%;
+    --category-society: 350 40% 66%;
+    --category-life: 330 40% 68%;
+    --category-health: 170 28% 56%;
+    --category-environment: 130 24% 54%;
+    --category-energy: 38 52% 60%;
+    --category-mobility: 280 32% 64%;
   }
 }
 
@@ -158,52 +132,89 @@
   }
 
   html {
-    font-size: 17px; /* 기본 폰트 살짝 키움 */
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   @media (min-width: 768px) {
     html {
-      font-size: 18px;
+      font-size: 17px;
     }
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.7;
-    letter-spacing: -0.01em;
+    font-family: var(--font-sans-kr);
+    font-feature-settings: 'kern', 'liga', 'calt';
+    line-height: 1.65;
+    letter-spacing: -0.005em;
+    /* Korean word-aware wrapping: keep Hangul tokens intact at character
+       boundaries; only break at spaces (or explicit <wbr>). Prevents the
+       "스." orphan-line bug on narrow viewports. */
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
-  /* 세리프 폰트 - 제목용 */
   .font-serif {
-    font-family: 'Noto Serif KR', Georgia, serif;
-    letter-spacing: -0.02em;
+    font-family: var(--font-serif-kr);
+    font-feature-settings: 'kern', 'liga';
+    letter-spacing: -0.018em;
   }
 
-  /* 헤딩 스타일 */
-  h1, h2, h3 {
-    line-height: 1.35;
-    letter-spacing: -0.025em;
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif-kr);
+    line-height: 1.2;
+    letter-spacing: -0.022em;
     font-weight: 700;
   }
 
-  /* 본문 스타일 */
   p, li {
-    line-height: 1.8;
+    line-height: 1.7;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.18);
+    color: hsl(var(--foreground));
+  }
+
+  /* Universal keyboard focus ring — 2px outline + 2px offset in --ring
+     (which mirrors --accent-quiet). Only triggers on :focus-visible so
+     mouse clicks stay clean; keyboard users always see clear focus. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 }
 
 @layer utilities {
-  /* 뉴스 본문 최적화 */
-  .prose-news {
-    @apply leading-loose tracking-tight;
+  /* Editorial small-caps metadata */
+  .eyebrow {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
 
-  /* 강조 텍스트 */
-  .text-emphasis {
-    font-weight: 600;
-    letter-spacing: -0.01em;
+  /* Hairline rule used between editorial sections */
+  .rule-top {
+    border-top: 1px solid hsl(var(--border));
+  }
+  .rule-bottom {
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  /* Pull-quote ornament — optical alignment with body left margin */
+  .pull-quote::before {
+    content: "“";
+    font-family: 'Noto Serif KR', Georgia, serif;
+    font-size: 3.5rem;
+    line-height: 0.6;
+    color: hsl(var(--accent));
+    display: block;
+    margin-left: -0.05em;
+    margin-bottom: 0.5rem;
   }
 }

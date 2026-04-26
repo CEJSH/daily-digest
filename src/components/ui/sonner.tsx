@@ -1,14 +1,13 @@
-import { useTheme } from "next-themes";
 import { Toaster as Sonner, toast } from "sonner";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
-const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme();
-
+const Toaster = (props: ToasterProps) => {
+  // Theme prop omitted — Sonner falls back to system preference detection.
+  // Our app theme is class-based on <html>; toasts are transient enough that
+  // perfect sync isn't worth the extra dependency.
   return (
     <Sonner
-      theme={theme as ToasterProps["theme"]}
       className="toaster group"
       toastOptions={{
         classNames: {

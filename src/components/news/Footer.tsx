@@ -1,41 +1,60 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="py-8 text-center space-y-6">
-      {/* 서비스 철학 */}
-      <div className="space-y-2">
-        <p className="text-sm text-muted-foreground">
-          더 적게, 더 깊이.
-        </p>
-        <p className="text-xs text-muted-foreground/70">
-          하루에 필요한 뉴스는 5개면 충분합니다.
-        </p>
+    <footer className="mt-12 border-t border-rule pb-16 pt-12 md:pt-16">
+      <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div>
+          <p className="font-serif text-xl font-bold tracking-tight text-foreground">
+            Daily Digest
+          </p>
+          <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/60">
+            더 적게, 더 깊이. 하루에 필요한 뉴스는 다섯 개면 충분합니다.
+            매일 아침, 큐레이션된 다이제스트를 전해드립니다.
+          </p>
+        </div>
+
+        <div>
+          <p className="eyebrow mb-4 text-foreground/55">Read</p>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link
+                to="/"
+                className="text-foreground/75 transition-colors hover:text-foreground"
+              >
+                오늘의 다이제스트
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/archive"
+                className="text-foreground/75 transition-colors hover:text-foreground"
+              >
+                지난 호 모아보기
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="eyebrow mb-4 text-foreground/55">About</p>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <span className="text-foreground/75">편집 원칙</span>
+            </li>
+            <li>
+              <span className="text-foreground/75">RSS 구독</span>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      {/* 구분선 */}
-      <div className="border-t border-border" />
-
-      {/* 아카이브 링크 (SEO/미래 자산용) */}
-      <div>
-        <Link 
-          to="/archive" 
-          className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-        >
-          지난 뉴스 보기 →
-        </Link>
+      <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-foreground/45 md:flex-row md:items-center md:justify-between">
+        <p>© {year} Daily Digest. All rights reserved.</p>
+        <p>Crafted with care · 매일 아침 06:00 KST</p>
       </div>
-
-      {/* 광고 영역 자리 (AdSense) */}
-      {/* TODO: 광고 코드 삽입 위치 */}
-      <div className="bg-muted/30 rounded p-4 text-xs text-muted-foreground/50">
-        광고 영역
-      </div>
-
-      {/* 저작권 */}
-      <p className="text-xs text-muted-foreground/50">
-        © 2026 오늘의 뉴스. All rights reserved.
-      </p>
     </footer>
   );
 }

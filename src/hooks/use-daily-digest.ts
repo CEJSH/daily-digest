@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import type { DailyDigest } from "@/types/digest";
 import { fetchDailyDigest } from "@/lib/digest-api";
 
@@ -7,33 +7,19 @@ type State =
   | { status: "error"; error: Error }
   | { status: "success"; digest: DailyDigest };
 
-export function useDailyDigest() {
-  const [state, setState] = useState<State>({ status: "loading" });
+export function useDailyDigest(): State {
+  const query = useQuery({
+    queryKey: ["dailyDigest"],
+    queryFn: ({ signal }) => fetchDailyDigest({ signal }),
+  });
 
-  useEffect(() => {
-    let mounted = true;
-    const controller = new AbortController();
-
-    (async () => {
-      try {
-        const digest = await fetchDailyDigest({ signal: controller.signal });
-        if (!mounted) return;
-
-        // Empty 조건: items가 5개 미만이면 empty 처리해도 됨
-        setState({ status: "success", digest });
-      } catch (e) {
-        if (!mounted) return;
-        if (controller.signal.aborted) return;
-        const error = e instanceof Error ? e : new Error(String(e));
-        setState({ status: "error", error });
-      }
-    })();
-
-    return () => {
-      mounted = false;
-      controller.abort();
-    };
-  }, []);
-
-  return state;
+  if (query.isPending) return { status: "loading" };
+  if (query.isError) {
+    const error =
+      query.error instanceof Error
+        ? query.error
+        : new Error(String(query.error));
+    return { status: "error", error };
+  }
+  return { status: "success", digest: query.data };
 }
