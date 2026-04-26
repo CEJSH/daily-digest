@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type Mode = "light" | "dark";
 
@@ -47,26 +52,34 @@ export function ThemeSwitcher() {
   };
 
   const isDark = mode === "dark";
+  const label = isDark ? "라이트 모드로 전환" : "다크 모드로 전환";
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-label={isDark ? "라이트 모드로 전환" : "다크 모드로 전환"}
-      className="group inline-flex h-9 w-9 items-center justify-center text-foreground/70 transition-colors hover:text-foreground"
-    >
-      <Sun
-        className={`h-[18px] w-[18px] transition-all ${
-          isDark ? "rotate-90 scale-0" : "rotate-0 scale-100"
-        }`}
-        strokeWidth={1.6}
-      />
-      <Moon
-        className={`absolute h-[18px] w-[18px] transition-all ${
-          isDark ? "rotate-0 scale-100" : "-rotate-90 scale-0"
-        }`}
-        strokeWidth={1.6}
-      />
-    </button>
+    <Tooltip delayDuration={200}>
+      <TooltipTrigger asChild>
+        <button
+          type="button"
+          onClick={toggle}
+          aria-label={label}
+          className="group inline-flex h-9 w-9 items-center justify-center text-foreground/70 transition-colors hover:text-foreground"
+        >
+          <Sun
+            className={`h-[18px] w-[18px] transition-all ${
+              isDark ? "rotate-90 scale-0" : "rotate-0 scale-100"
+            }`}
+            strokeWidth={1.6}
+          />
+          <Moon
+            className={`absolute h-[18px] w-[18px] transition-all ${
+              isDark ? "rotate-0 scale-100" : "-rotate-90 scale-0"
+            }`}
+            strokeWidth={1.6}
+          />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" className="text-xs">
+        {label}
+      </TooltipContent>
+    </Tooltip>
   );
 }
