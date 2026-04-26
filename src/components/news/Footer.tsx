@@ -7,8 +7,8 @@ export function Footer() {
     <footer className="mt-12 border-t border-rule pb-16 pt-12 md:pt-16">
       <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="font-serif text-xl font-bold tracking-tight text-foreground">
-            Daily Digest
+          <p className="font-serif text-xl font-bold tracking-tighter text-foreground">
+            PICKY
           </p>
           <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/60">
             더 적게, 더 깊이. 하루에 필요한 뉴스는 다섯 개면 충분합니다.
@@ -52,7 +52,7 @@ export function Footer() {
       </div>
 
       <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-foreground/65 md:flex-row md:items-center md:justify-between">
-        <p>© {year} Daily Digest. All rights reserved.</p>
+        <p>© {year} PICKY. All rights reserved.</p>
         <p>Crafted with care · 매일 아침 06:00 KST</p>
       </div>
     </footer>
