@@ -11,3 +11,4 @@ export { EmptyState } from './EmptyState';
 export { Footer } from './Footer';
 export { SubscribeCTA } from './SubscribeCTA';
 export { ThemeSwitcher } from './ThemeSwitcher';
+export { ArchiveCalendar } from './ArchiveCalendar';

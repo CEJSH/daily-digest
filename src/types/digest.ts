@@ -83,3 +83,20 @@ export type DailyQuestion = {
   date: string;
   question: string;
 };
+
+/**
+ * 날짜별 아카이브 목차 — 백엔드가 data/index.json으로 제공.
+ * entries는 최신순으로 들어오며, path는 data 디렉터리 기준 상대 경로
+ * (예: "archive/2026-06-19.json"). count는 그날 기사 수(없을 수 있음).
+ */
+export const DigestIndexEntrySchema = z.object({
+  date: z.string().min(1),
+  path: z.string().min(1),
+  count: z.number().optional(),
+});
+export type DigestIndexEntry = z.infer<typeof DigestIndexEntrySchema>;
+
+export const DigestIndexSchema = z.object({
+  entries: z.array(DigestIndexEntrySchema),
+});
+export type DigestIndex = z.infer<typeof DigestIndexSchema>;
