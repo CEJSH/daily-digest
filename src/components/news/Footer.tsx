@@ -10,7 +10,7 @@ export function Footer() {
         <div>
           <Logo size="lg" />
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-foreground/60">
-            더 적게, 더 깊이. 하루에 필요한 뉴스는 다섯 개면 충분합니다.
+            더 적게, 더 깊이. 하루에 필요한 뉴스만 최소한으로 선별합니다.
             매일 아침, 큐레이션된 다이제스트를 전해드립니다.
           </p>
         </div>
@@ -42,9 +42,6 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             <li>
               <span className="text-foreground/75">편집 원칙</span>
-            </li>
-            <li>
-              <span className="text-foreground/75">RSS 구독</span>
             </li>
           </ul>
         </div>

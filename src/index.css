@@ -148,7 +148,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    /* 앵커 클릭 시 부드러운 스크롤. SubscribeCTA → #subscribe 등 in-page 이동에 적용. */
+    /* 앵커 클릭 시 부드러운 스크롤. in-page 이동에 적용. */
     scroll-behavior: smooth;
   }
 

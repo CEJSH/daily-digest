@@ -1,14 +1,12 @@
 import { useMemo } from "react";
 import { format } from "date-fns";
 import { ko } from 'date-fns/locale';
-import { SubscribeCTA } from './SubscribeCTA';
-import { ThemeSwitcher } from './ThemeSwitcher';
 import { formatReadingTimeMinutes } from '@/types/news';
 
 interface HeaderProps {
   lastUpdatedAt: string;
   /**
-   * 헤드라인 강조 범위. "phrase"는 "다섯 가지" 전체, "word"는 "다섯"만.
+   * 헤드라인 강조 범위. "phrase"는 "최소한의" 전체, "word"는 "최소한"만.
    * 기본값은 기존 동작 유지를 위해 "phrase".
    */
   emphasisScope?: "phrase" | "word";
@@ -61,11 +59,11 @@ export function Header({
         오늘 알아야 할<wbr /> <br className="hidden sm:block" />
         {emphasisScope === "word" ? (
           <>
-            <span className="text-accent-quiet">다섯</span> 가지 뉴스.
+            <span className="text-accent-quiet">최소한</span>의 뉴스.
           </>
         ) : (
           <>
-            <span className="text-accent-quiet">다섯 가지</span> 뉴스.
+            <span className="text-accent-quiet">최소한의</span> 뉴스.
           </>
         )}
       </h1>
@@ -94,9 +92,6 @@ export function Header({
         </p>
       )}
 
-      <div className="mt-8">
-        <SubscribeCTA />
-      </div>
     </header>
   );
 }

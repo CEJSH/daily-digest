@@ -46,7 +46,7 @@ export function SubscribeForm() {
           매일 아침 06:00, 메일함에서 만나요
         </p>
         <p className="mt-3 text-sm leading-relaxed text-foreground/60 md:text-base">
-          광고 없이, 다섯 가지만 골라 보내드립니다.
+          광고 없이, 최소한으로 골라 보내드립니다.
         </p>
 
         {status === "success" ? (

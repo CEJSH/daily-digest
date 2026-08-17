@@ -156,7 +156,7 @@ async function main() {
   const volNumber = issueNumberFor(digest.date);
   const formattedDate = String(digest.date).replace(/-/g, ".");
   const headline =
-    digest.items?.[0]?.title ?? "오늘 알아야 할 다섯 가지 뉴스";
+    digest.items?.[0]?.title ?? "오늘 알아야 할 최소한의 뉴스";
 
   const fontData = await loadFont();
 

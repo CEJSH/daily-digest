@@ -6,7 +6,6 @@ import {
   NewsCard,
   ClosingNote,
   TodayQuestion,
-  SubscribeForm,
   EmptyState,
   Footer,
 } from "@/components/news";
@@ -97,7 +96,6 @@ const Index = () => {
 
           {hasNews && <ClosingNote />}
           {hasNews && <TodayQuestion question={question} />}
-          <SubscribeForm />
         </main>
 
         <Footer />
